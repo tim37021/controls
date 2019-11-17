@@ -17,7 +17,7 @@ BaseMixin {
 		parent.element.on('drop', function (e) {
 			e.stopPropagation();
 			e.preventDefault();
-			if(e.dataTransfer.files)
+			if(e.dataTransfer.files.length>0)
 				self.filesAdded(e.dataTransfer.files)
 			else
 				self.elementAdded(e.dataTransfer)
