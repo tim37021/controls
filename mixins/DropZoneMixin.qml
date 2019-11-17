@@ -1,6 +1,7 @@
 /// Object for loading files via drag'n'drop
 BaseMixin {
 	signal filesAdded;	///< any file dropped inside DropZone signal
+	signal elementAdded;  ///< other stuff dropped inside
 
 	///@private
 	constructor: {
@@ -16,7 +17,10 @@ BaseMixin {
 		parent.element.on('drop', function (e) {
 			e.stopPropagation();
 			e.preventDefault();
-			self.filesAdded(e.dataTransfer.files)
+			if(e.dataTransfer.files)
+				self.filesAdded(e.dataTransfer.files)
+			else
+				self.elementAdded(e.dataTransfer)
 		}.bind(parent));
 	}
 }
